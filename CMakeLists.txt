@@ -6,8 +6,13 @@ cmake_minimum_required(VERSION 3.10)
 # target_compile_features(MyProject PUBLIC cxx_std_11)
 
 # プロジェクト名を指定
-# ConvexHull：凸法
 project(ConvexHull)
+
+#[[ CMAKE_BUILD_TYPE Release, Debug, RelWithDebInfo, MinSizeRel and Custom. ]]
+if(NOT CMAKE_BUILD_TYPE)        
+    set(CMAKE_BUILD_TYPE Debug)
+    message(STATUS "CMAKE_BUILD_TYPE" = ${CMAKE_BUILD_TYPE})
+endif()
 
 # プロジェクトのソースファイルを指定
 set(SOURCE_FILES
