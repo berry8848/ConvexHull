@@ -9,10 +9,6 @@ cmake_minimum_required(VERSION 3.10)
 # ConvexHull：凸法
 project(ConvexHull)
 
-# ConvexHullのディレクトリパスを設定
-# set(SRC_DIR ${PROJECT_SOURCE_DIR}/src)
-# set(INC_DIR ${PROJECT_SOURCE_DIR}/include)
-
 # プロジェクトのソースファイルを指定
 set(SOURCE_FILES
     src/main.cpp

@@ -31,23 +31,21 @@ void ConvexHull::execute() {
 	orgQhull::Qhull qhull;
 	
 	orgQhull::PointCoordinates points;
-	//3����������
+	
 	points.setDimension(3);
 
-	//Qhull�ł�coorT�^���g�����A����double
+	
 	std::vector<coordT> allpoint;
 	for (auto v : m_input_vertexes) {
 		allpoint.push_back(v);
 	}
 	points.append( allpoint);
-	//qhull�̎��s
+	
 	qhull.runQhull(points.comment().c_str(), points.dimension(), points.count(), points.coordinates(), "Qt");
-
-	//qhull�̌��ʂ���ʂ��擾
+	
 	orgQhull::QhullFacetList faceList = qhull.facetList();
 	for (auto itr = faceList.begin(); itr != faceList.end(); itr++) {
 
-		//�ʂ��璸�_�����擾
 		orgQhull::QhullVertexSet vset = (*itr).vertices();
 		for (auto vitr = vset.begin(); vitr != vset.end(); vitr++) {
 			orgQhull::QhullPoint p = (*vitr).point();
