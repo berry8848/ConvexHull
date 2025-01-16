@@ -21,14 +21,14 @@ int main()
         5.0, 6.0, 7.0   // Vertex 5 (x4, y4, z4)
     };
 
-	std::string outputFile = "C:/myFolder/myQhull/data/Output.stl";
+	std::string outputFile = "C:/myFolder/ConvexHull/data/Output.stl";
 
 	// if (argc < 1) {
 	// 	std::cerr << "QhullTest INPUT_STL_FILE" << std::endl;
 	// 	return 1;
 	// }
 
-	StlFile stl("C:/myFolder/myQhull/data/Nut.stl");
+	StlFile stl("C:/myFolder/ConvexHull/data/Nut.stl");
 
 	ConvexHull convex;
 	convex.setVertexes(stl.vertexes());
