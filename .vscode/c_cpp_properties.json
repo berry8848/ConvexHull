@@ -4,7 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/qhull/install/include"
+                "C:/myFolder/ConvexHull/qhull/include"
             ],
             "defines": [
                 "_DEBUG",

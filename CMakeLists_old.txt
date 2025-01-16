@@ -26,7 +26,7 @@ cmake_minimum_required(VERSION 3.20)
 # プロジェクト名を指定
 # CXXを指定しなしと、Cコンパイラになる。
 # その場合、C++固有の機能を使えなくなる？（C++を使っていると判断してCXXコンパイラにしてくれてそう）
-project(testdll CXX)
+project(ConvexHull CXX)
 
 # デフォルトのビルドタイプを指定
 if(NOT CMAKE_BUILD_TYPE)        
@@ -41,29 +41,25 @@ message(STATUS "CMAKE_BUILD_TYPE" = ${CMAKE_BUILD_TYPE})
 #     ${SRC}
 # )
 set(SOURCE_FILES
-    src/TestDll.cpp
+    src/main.cpp
     src/StlFile.cpp 
     src/ConvexHull.cpp 
 )
 # プロジェクトのヘッダーファイルを指定
 set(HEADER_FILES
-    include/TestDll.h
     include/StlFile.h
     include/ConvexHull.h
 )
 
 # 実行ファイルの作成
-# add_executable(convex ${SOURCE_FILES})
-
-# dllでビルドすると指定
-add_library(testdll SHARED ${SOURCE_FILES})
+add_executable(ConvexHull ${SOURCE_FILES})
 
 # C++ のバージョンを指定
 # cxx_std_98, cxx_std_11, cxx_std_14, cxx_std_17, cxx_std_20, cxx_std_23などがある。
 # set(CMAKE_CXX_STANDARD 11)
 # 上記は非推奨の書き方。推奨される方法は以下のように書く。
 # add_executableの後ろに書かないとエラーが発生する。
-target_compile_features(testdll PRIVATE cxx_std_17)
+target_compile_features(ConvexHull PRIVATE cxx_std_17)
 
 
 # ---------------------------------------
@@ -87,17 +83,21 @@ endif()
 # ヘッダーファイルのディレクトリをインクルードパスに追加
 # include_directoriesはターゲットの指定ができないため非推奨。
 # include_directories(${QHULL_INCLUDE_DIR})
-target_include_directories(testdll PUBLIC ${PROJECT_SOURCE_DIR}/include ${QHULL_INCLUDE_DIR})
+target_include_directories(ConvexHull PUBLIC ${PROJECT_SOURCE_DIR}/include ${QHULL_INCLUDE_DIR})
 
 
 # Qhull ライブラリをリンク
 # ${QHULL_LIB_DIR}/qhullstatic_r.libではなく、{QHULL_LIB_DIR}/qhullstatic.libを利用するとnon-reentrantエラーが発生する。
 # Debug/ReleaseでQHULL_LIB_DIRを切り替える。
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_link_libraries(testdll ${QHULL_LIB_DIR}/qhull_rd.lib ${QHULL_LIB_DIR}/qhullstatic_rd.lib  ${QHULL_LIB_DIR}/qhullcpp_d.lib)
+    target_link_libraries(ConvexHull ${QHULL_LIB_DIR}/qhull_rd.lib ${QHULL_LIB_DIR}/qhullstatic_rd.lib  ${QHULL_LIB_DIR}/qhullcpp_d.lib)
 elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_link_libraries(testdll ${QHULL_LIB_DIR}/qhull_r.lib ${QHULL_LIB_DIR}/qhullstatic_r.lib  ${QHULL_LIB_DIR}/qhullcpp.lib)
+    target_link_libraries(ConvexHull ${QHULL_LIB_DIR}/qhull_r.lib ${QHULL_LIB_DIR}/qhullstatic_r.lib  ${QHULL_LIB_DIR}/qhullcpp.lib)
 endif()
+
+# IDE でヘッダーファイルを表示させる
+target_sources(ConvexHull PRIVATE ${HEADER_FILES})
+
 
 # ---------------------------------------
 # Define install
