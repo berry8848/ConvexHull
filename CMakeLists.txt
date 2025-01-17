@@ -1,16 +1,20 @@
-# CMakeLists.txt 
+﻿# CMakeLists.txt 
 # CMake Template file. 12/Nov/2022
 
 
 # $ tree .
-# .
-# ├── CMakeLists.txt
-# ├── build
-# └── src
-#     ├── include
-#     │   └── bits
-#     │       └── stdc++.h
-#     └── main.cpp
+# ├─.vscode
+# ├─build
+# ├─data
+# ├─include
+# ├─qhull
+# │  ├─Debug
+# │  ├─include
+# │  │  ├─libqhull
+# │  │  ├─libqhullcpp
+# │  │  └─libqhull_r
+# │  └─Release
+# └─src
 
 
 cmake_minimum_required(VERSION 3.20)
